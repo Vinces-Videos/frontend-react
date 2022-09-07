@@ -1,45 +1,40 @@
 import Header from './components/Header';
-import Movies from './components/Movies';
-import { useState } from 'react'
+import FilmCategories from './components/FilmCategories';
+import { useState, useEffect } from 'react'
+import Modal from './components/Modal';
 
 function App() {
-  const [movies, setMovies] = useState([
-    {
-      "durationMinutes": 123,
-      "ageRating": "18",
-      "category": "Regular",
-      "name": "My First Video",
-      "stockCount": 42,
-      "thumbnailUrl": "https://mcoffey-2020-v1.s3.eu-west-2.amazonaws.com/film-thumbnails/test-thumbnail-oblivion.jpg",
-      "tags": {
-        "Main Actor": "Tom Cruise"
-      },
-      "id": "6304c30d03377729f9f5528d",
-      "archived": true
-    },
-    {
-      "durationMinutes": 141,
-      "ageRating": "12",
-      "category": "New Releases",
-      "name": "Star Wars: A New Hope",
-      "stockCount": 3,
-      "thumbnailUrl": "https://mcoffey-2020-v1.s3.eu-west-2.amazonaws.com/film-thumbnails/test-thumbnail-lodr.jpg",
-      "tags": {
-        "Main Actor": "Mark Hamill",
-        "Supporting Actor": "Harrison Ford"
-      },
-      "id": "6304c3d503377729f9f55290",
-      "archived": true
-    }
-]);
+  const API_URL = "https://localhost:5001/FilmCategory"
+    
+  //Initially load an empty array
+  const [categories, setCategories] = useState([])
+  const [show, setShow] = useState(false);
+
+  //Load the data whenever 
+  useEffect(() => {
+      //Use an async function
+      const fetchItems = async () => {
+          try {
+              const response = await fetch(API_URL);
+              const listItems = await response.json();
+              console.log(listItems)
+              setCategories(listItems);
+          } catch (err) {
+              console.log(err.stack);
+          }
+      }
+
+      //Call the async function defined above
+      (async () => await fetchItems())();
+  }, [])
 
   return (
     //This 'fragment' allows us to return multiple things
     <div>
-      <Header title='Vinces Videos'/>
-      <div className='container'>
-        <Movies category="New Releases" movies={movies}/>
-      </div>
+      <Header title='<Branding>'/>
+      <button onClick={() => setShow(true)}>Open Modal</button>
+      <Modal Show={show}/>
+      <FilmCategories categories={categories}></FilmCategories>
     </div>
   )
 }

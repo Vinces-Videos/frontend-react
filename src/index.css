@@ -1,24 +1,79 @@
-.body {
+body {
     font-family:  'Poppins', sans-serif;
+    color: white;
+    background-color: rgb(10, 10, 10);
 }
 
-.container {
+h3 {
+    text-transform: uppercase;
+}
+
+.categories-outer-container {
     max-width: 90%;
-    margin: 30px auto;
+    margin: 15px auto;
     overflow: auto;
-    min-height: 300px;
-    border: 1px solid steelblue;
-    padding: 30px;
     border-radius: 5px;
 }
 
-.video-container{
+.categories-inner-container {
+    border: 1px solid steelblue;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.video-container {
     display: inline-block;
     padding: 30px;
 }
 
-.video-thumbnail {
-    object-fit: cover;
-    width: 200px;
-    height: 100%;
+.video-thumbnail-div {
+    background-color: black;
+    width: 250px;
+    height: 400px;
+    display: inline-block; /* makes it fit in like an <img> */
+    background-size: cover; /* or contain */
+    background-position: center center;
+    background-repeat: no-repeat;
+    border-radius: 3%;
 }
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
