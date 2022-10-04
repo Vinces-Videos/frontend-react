@@ -8,7 +8,7 @@ function App() {
     
   //Initially load an empty array
   const [categories, setCategories] = useState([])
-  const [show, setShow] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
 
   //Load the data whenever 
   useEffect(() => {
@@ -30,10 +30,11 @@ function App() {
 
   return (
     //This 'fragment' allows us to return multiple things
+    //If openModal is set to true, open the modal
     <div>
-      <Header title='<Branding>'/>
-      <button onClick={() => setShow(true)}>Open Modal</button>
-      <Modal Show={show}/>
+      <Header title='<Vinces Videos Branding>'/>
+      <button className="open-modal-button" onClick={() => {setOpenModal(true)}}>Open Modal</button>
+      {openModal && <Modal closeModal={setOpenModal} />} 
       <FilmCategories categories={categories}></FilmCategories>
     </div>
   )
