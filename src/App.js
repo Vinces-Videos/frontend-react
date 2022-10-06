@@ -32,10 +32,11 @@ function App() {
     //This 'fragment' allows us to return multiple things
     //If openModal is set to true, open the modal
     <div>
-      <Header title='<Vinces Videos Branding>'/>
-      <button className="open-modal-button" onClick={() => {setOpenModal(true)}}>Open Modal</button>
       {openModal && <Modal closeModal={setOpenModal} />} 
-      <FilmCategories categories={categories}></FilmCategories>
+      <div className='body-container'>
+        <Header title='<Vinces Videos Branding>'/>
+        <FilmCategories categories={categories}></FilmCategories>
+      </div>
     </div>
   )
 }
