@@ -4,8 +4,26 @@
 }
 
 header {
-    padding: 8px;
+    padding: 10px 20px;
+    overflow: hidden;
+    height: 150px;
 }
+
+.header-right{
+    float: right;
+    height: 100%;
+}
+
+.logo {
+    width: auto;
+    height: 100%;
+    display: inline-block
+}
+
+.login-button {
+    all: unset;
+}
+
 
 body {
     font-family:  'Poppins', sans-serif;

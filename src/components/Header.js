@@ -1,9 +1,14 @@
 import PropTypes from 'prop-types'
+import logo from '../logo.png'
 
-const Header = ({ title }) => {
+//Content for the header, we pass in a modal for the login. This needs to be controlled at the top level so it can overlay all other content on the page
+const Header = ({loginModal}) => {
   return (
     <header>
-        <h1>{title}</h1>
+        <img className='logo' src={logo} alt='Vinces Videos Logo'></img>
+        <div className = 'header-right'>
+          <button className='login-button' onClick={() => {loginModal(true)}}>Login</button>
+        </div>
     </header>
   )
 }
