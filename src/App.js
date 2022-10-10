@@ -5,9 +5,10 @@ import React, { useState, useEffect } from 'react'
 import Modal from './components/Modal';
 
 function App() {
+  //Global variables
+  const baseApiURL = "https://localhost:5001";
 
-    
-  //Initially load an empty array
+  //Initialise our states
   const [categories, setCategories] = useState([])
   const [movies, setMovies] = useState([])
   const [loginModal, setOpenModal] = useState(false);
@@ -15,8 +16,8 @@ function App() {
   //Load the data whenever 
   useEffect(() => {
       //Call the async function defined above
-      (async () => await GetCategories(setCategories))();
-      (async () => await GetMovies(setMovies))();
+      (async () => await FetchItems(`${baseApiURL}/FilmCategory`, setCategories))(); //Get film categories
+      (async () => await FetchItems(`${baseApiURL}/Videos`, setMovies))(); //Get movie list
   }, [])
 
   return (
@@ -32,22 +33,14 @@ function App() {
   )
 }
 
-async function GetCategories(func){
-  const GET_CATEGORIES = "https://localhost:5001/FilmCategory"
-  const response = await fetch(GET_CATEGORIES);
-  const listItems = await response.json();
-  console.log("got categories");
-  console.log(listItems)
-  func(listItems);
-}
-
-async function GetMovies(func){
-  const GET_MOVIES = "https://localhost:5001/Videos"
-  const response = await fetch(GET_MOVIES);
-  const listItems = await response.json();
-  console.log("got movies");
-  console.log(listItems)
-  func(listItems);
+async function FetchItems(url, func){
+  try {
+    const response = await fetch(url);
+    const listItems = await response.json();
+    func(listItems)
+  }catch(err){
+    console.log(err);
+  }
 }
 
 export default App;
