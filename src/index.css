@@ -3,8 +3,31 @@
     padding: 0px;
 }
 
-header {
-    padding: 8px;
+h4 {
+    color: black;
+}
+
+.header {
+    padding: 10px 20px;
+    overflow: hidden;
+    height: 75px;
+    display: flex;
+}
+
+.header-right{
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto
+}
+
+.logo {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.login-button {
+    all: unset;
+    float: right;
 }
 
 body {
