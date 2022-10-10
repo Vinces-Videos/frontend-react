@@ -3,27 +3,32 @@
     padding: 0px;
 }
 
-header {
+h4 {
+    color: black;
+}
+
+.header {
     padding: 10px 20px;
     overflow: hidden;
-    height: 150px;
+    height: 75px;
+    display: flex;
 }
 
 .header-right{
-    float: right;
-    height: 100%;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto
 }
 
 .logo {
-    width: auto;
-    height: 100%;
-    display: inline-block
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 .login-button {
     all: unset;
+    float: right;
 }
-
 
 body {
     font-family:  'Poppins', sans-serif;
