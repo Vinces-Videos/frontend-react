@@ -1,4 +1,4 @@
-export const Movie = ( { movie } ) => {
+const Movie = ( { movie } ) => {
   return (
     <div className="video-container" style={{cursor: 'pointer'}}>
         <div className="video-thumbnail-div" style={{backgroundImage: `url(${movie.thumbnailUrl})`}} />
