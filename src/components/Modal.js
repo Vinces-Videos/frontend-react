@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 
 //rename the modalBody to ModalBody 
 const Modal = ({closeModal, modalBody: ModalBody}) => { 
-    console.log(ModalBody);
     return (
-        <div onClick={() => closeModal(false)} className="modal-background">
+        <div className="modal-background">
             <div className="modal-container">
                 <div className="modal-header">
                     <h4 className="modal-title">{ModalBody.name}</h4>

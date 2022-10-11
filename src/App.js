@@ -3,6 +3,7 @@ import VideoSections from './components/VideoSections';
 import Cart from './components/Cart';
 import React, { useState, useEffect } from 'react'
 import Modal from './components/Modal';
+import CartProvider from './context/cart-context'
 
 function App() {
   //Global variables
@@ -11,9 +12,11 @@ function App() {
   //Initialise our states
   const [categories, setCategories] = useState([])
   const [movies, setMovies] = useState([])
-  const [loginModal, setOpenModal] = useState(false);
+  const [displayModal, setOpenModal] = useState(false);
+  
+  //Context can be accessed many component layers deep
 
-  //Load the data whenever 
+  //Load the data whenever the application is refreshed
   useEffect(() => {
       //Call the async function defined above
       (async () => await FetchItems(`${baseApiURL}/FilmCategory`, setCategories))(); //Get film categories
@@ -22,12 +25,16 @@ function App() {
 
   return (
     //This 'fragment' allows us to return multiple things
-    //If openModal is set to true, open the modal
+    //CartProvider hands the cart to anything contained within
     <div>
-      {loginModal && <Modal closeModal={setOpenModal} modalBody={Cart}/>} 
+      <CartProvider>
+        {displayModal && <Modal closeModal={setOpenModal} modalBody={Cart}/>} 
+      </CartProvider>
       <div className='body-container'>
         <Header loginModal={setOpenModal}/>
-        <VideoSections categories={categories} movies={movies}></VideoSections>
+        <CartProvider>
+          <VideoSections categories={categories} movies={movies}></VideoSections>
+        </CartProvider>
       </div>
     </div>
   )
