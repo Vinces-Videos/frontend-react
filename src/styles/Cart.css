@@ -1,0 +1,8 @@
+.cart-item{
+    border: 1px solid steelblue;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    overflow-x: auto;
+    white-space: nowrap;
+}

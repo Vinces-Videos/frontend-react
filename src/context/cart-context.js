@@ -7,6 +7,7 @@ const ACTIONS = {
 
 const CartContext = React.createContext();
 const CartUpdateContext = React.createContext();
+const CartRemoveContext = React.createContext();
 
 //Exposes the cart, can be used to query cart items
 export function useCart(){
@@ -18,6 +19,10 @@ export function useCartUpdate(){
     return useContext(CartUpdateContext);
 }
 
+export function useCartRemove(){
+    return useContext(CartRemoveContext);
+}
+
 //Returns new updated state based on the action
 function reducer(cart, action){
     switch(action.type)
@@ -25,7 +30,8 @@ function reducer(cart, action){
         case ACTIONS.ADD:
             return [...cart, action.payload];
         case ACTIONS.REMOVE:
-            break;
+            //Return a new version of cart which removes the specified index
+            return cart.filter((item, index) => index !== action.payload);
         default:
             return cart;
     }   
@@ -36,22 +42,23 @@ function reducer(cart, action){
 export default function CartProvider({children}){
     //reducerCart is a new empty array, this will become an array of movies
     const [cart, dispatch] = useReducer(reducer, []);
-    console.log("Current cart", cart);
+    console.log(cart);
 
-    function handleAddToCart(item){
+    function handleCartUpdate(item){
         dispatch({type: ACTIONS.ADD, payload: item});
     }
 
-    //Cart length isn't just the size of the array, quantities of each item also need to be added up
-    function itemCount(){
-        return cart.reduce((previousValue, currentValue) => currentValue.cartQty ? previousValue + currentValue.cartQty : previousValue + 1, 0);
+    function handleCartRemove(index){
+        dispatch({type: ACTIONS.REMOVE, payload: index});
     }
 
     //Uses the children as props passed to the function to render dependents
     return (
       <CartContext.Provider value={cart}>
-        <CartUpdateContext.Provider value={handleAddToCart}>
-            {children}
+        <CartUpdateContext.Provider value={handleCartUpdate}>
+            <CartRemoveContext.Provider value={handleCartRemove}>
+                {children}
+            </CartRemoveContext.Provider>
         </CartUpdateContext.Provider>
       </CartContext.Provider>  
     );
