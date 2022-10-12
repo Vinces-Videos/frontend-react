@@ -8,7 +8,7 @@ const Header = ({loginModal}) => {
     <div className='header'>
         <h1 className='logo'>Vinces Videos</h1>
         <div className = 'header-right'>
-          <button className='login-button' onClick={() => {loginModal(true)}}>Cart {`foo`}</button>
+          <button className='login-button' onClick={() => {loginModal(true)}}>Cart ({cart.length})</button>
         </div>
     </div>
   )

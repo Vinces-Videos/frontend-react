@@ -4,7 +4,7 @@
 }
 
 h4 {
-    color: black;
+    color: white;
 }
 
 .header {
@@ -32,8 +32,8 @@ h4 {
 
 body {
     font-family:  'Poppins', sans-serif;
-    color: white;
-    background-color: rgb(10, 10, 10); 
+    color: black;
+    background-color: rgb(200, 200, 200); 
 }
 
 h3 {
@@ -53,6 +53,7 @@ h3 {
 }
 
 .categories-inner-container {
+    background-color: rgb(150, 150, 150); 
     border: 1px solid steelblue;
     padding: 10px;
     margin: 5px;
@@ -67,7 +68,7 @@ h3 {
 }
 
 .video-thumbnail-div {
-    background-color: black;
+    background-color: white;
     width: 250px;
     height: 400px;
     display: inline-block; /* makes it fit in like an <img> */

@@ -29,13 +29,11 @@ function App() {
     <div>
       <CartProvider>
         {displayModal && <Modal closeModal={setOpenModal} modalBody={Cart}/>} 
-      </CartProvider>
-      <div className='body-container'>
+        <div className='body-container'>
         <Header loginModal={setOpenModal}/>
-        <CartProvider>
           <VideoSections categories={categories} movies={movies}></VideoSections>
-        </CartProvider>
-      </div>
+        </div>
+      </CartProvider>
     </div>
   )
 }

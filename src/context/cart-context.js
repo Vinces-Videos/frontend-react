@@ -1,4 +1,9 @@
-import React, {useContext, useState} from "react";
+import React, {useContext, useReducer} from "react";
+
+const ACTIONS = {
+    ADD: 'add',
+    REMOVE: 'remove'
+};
 
 const CartContext = React.createContext();
 const CartUpdateContext = React.createContext();
@@ -13,27 +18,28 @@ export function useCartUpdate(){
     return useContext(CartUpdateContext);
 }
 
+//Returns new updated state based on the action
+function reducer(cart, action){
+    switch(action.type)
+    {
+        case ACTIONS.ADD:
+            return [...cart, action.payload];
+        case ACTIONS.REMOVE:
+            break;
+        default:
+            return cart;
+    }   
+}
+
 //Context is like a global variable. In our case we want to access the cart from whereever we are in the application.
 //This prevents 'props drilling' where we have to pass props down to multiple nested objects
 export default function CartProvider({children}){
-    const [cart, setCart] = useState([]);
+    //reducerCart is a new empty array, this will become an array of movies
+    const [cart, dispatch] = useReducer(reducer, []);
+    console.log("Current cart", cart);
 
-    //Appends an item to the cart if it's not already in there
-    function updateCart(item){
-        const index = cart.findIndex(x => x === item);
-
-        if (index !== -1)
-        {
-            cart[index].cartQty = cart[index].cartQty +1 || 2;
-        }
-        else
-        {
-            console.log(`Updated the cart with ${item.name}`);
-            //Add's a new item to the array using the proper setCart react hook, without doing this react wouldn't know the object has been updated
-            setCart(prevArr => [...prevArr, item]);
-        }
-        console.log(cart);
-        console.log(`${itemCount()} items in the cart`)
+    function handleAddToCart(item){
+        dispatch({type: ACTIONS.ADD, payload: item});
     }
 
     //Cart length isn't just the size of the array, quantities of each item also need to be added up
@@ -44,7 +50,7 @@ export default function CartProvider({children}){
     //Uses the children as props passed to the function to render dependents
     return (
       <CartContext.Provider value={cart}>
-        <CartUpdateContext.Provider value={updateCart}>
+        <CartUpdateContext.Provider value={handleAddToCart}>
             {children}
         </CartUpdateContext.Provider>
       </CartContext.Provider>  

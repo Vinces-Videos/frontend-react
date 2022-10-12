@@ -1,14 +1,15 @@
 import { useCart } from '../context/cart-context'
 
 const Cart = () => {
-    const cartContext = useCart();
-    console.log(cartContext);
+    const cart = useCart();
 
+    //Create a new array which contains a cart item div
     return (
-        <>
-            <h4>This is my cart modal</h4>
-            <h4>There are {cartContext.length} items in the cart</h4>
-        </>
+        <div className='cart-inner-container'>
+        {cart.map((item, index) => (
+            <p key={index}>{item.name} - {item.id}</p>
+        ))}
+    </div>
     );
 }
 
