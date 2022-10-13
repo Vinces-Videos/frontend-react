@@ -30,7 +30,7 @@ function App() {
       <CartProvider>
         {displayModal && <Modal closeModal={setOpenModal} modalBody={Cart}/>} 
         <div className='body-container'>
-        <Header loginModal={setOpenModal}/>
+        <Header modal={setOpenModal}/>
           <VideoSections categories={categories} movies={movies}></VideoSections>
         </div>
       </CartProvider>

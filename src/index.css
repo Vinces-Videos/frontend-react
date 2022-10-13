@@ -7,29 +7,6 @@ h4 {
     color: white;
 }
 
-.header {
-    padding: 10px 20px;
-    overflow: hidden;
-    height: 75px;
-    display: flex;
-}
-
-.header-right{
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-left: auto
-}
-
-.logo {
-    margin-top: auto;
-    margin-bottom: auto;
-}
-
-.login-button {
-    all: unset;
-    float: right;
-}
-
 body {
     font-family:  'Poppins', sans-serif;
     color: black;
@@ -38,11 +15,6 @@ body {
 
 h3 {
     text-transform: uppercase;
-}
-
-.body-container {
-    margin-left: 8px;
-    margin-right: 8px;
 }
 
 .categories-outer-container {

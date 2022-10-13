@@ -1,0 +1,35 @@
+.nav {
+    background-color: slategray;
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    padding: 0 1rem;
+}
+
+.nav ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+}
+
+.nav a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.nav li:hover button:hover {
+    background-color: rgba(200, 200, 200, 50);
+}
+
+.logo {
+    font-size: 2rem;
+}
+
+.header-button {
+    all: unset;
+    float: right;
+}
