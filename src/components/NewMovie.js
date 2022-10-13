@@ -1,17 +1,27 @@
+import { useRef } from "react";
+
 const NewMovie = ({displayForm}) => {
+    const titleRef = useRef(null);
+    const categoryRef = useRef(null);
+    const ageRef = useRef(null);
+    const archivedRef = useRef(null);
+    const durationRef = useRef(null);
+    const stockRef = useRef(null);
+    const thumbRef = useRef(null);
+
     return (
         <div className='movie-form'>
             <h5>New Movie Form</h5>
             <label>Title:
-                <input className='medium-input' type='textbox'/>
+                <input ref={titleRef} className='medium-input' type='textbox'/>
             </label>
             <label>Category:
-                <select>
+                <select ref={categoryRef}>
                     <option>A</option>
                 </select>
             </label>
             <label>Age Rating:
-                <select>
+                <select ref={ageRef}>
                     <option value='all'>U - Suitable for all</option>
                     <option value='pg'>PG - Parental guidance</option>
                     <option value='12'>12 - Age 12 and above</option>
@@ -20,25 +30,41 @@ const NewMovie = ({displayForm}) => {
                 </select>
             </label>
             <label>Archived:
-                <input type='checkbox'/>
+                <input ref={archivedRef} type='checkbox'/>
             </label>
             <label>Duration (minutes):
-                <input type='number' min='1' max='900'/>
+                <input ref={durationRef} type='number' min='1' max='900'/>
             </label>
             <label>Stock Count:
-                <input type='number' min='0' max='900'/>
+                <input ref={stockRef} type='number' min='0' max='900'/>
             </label>
             <label>Thumbnail URL:
-                <input className='long-input' type='textbox'/>
+                <input ref={thumbRef} className='long-input' type='textbox'/>
             </label>
-            <button onClick={(event) => postVideo(event.target.parentNode)}>Submit</button>
+            <button onClick={() => postVideo()}>Submit</button>
             <button onClick={() => displayForm(false)}>Cancel</button>
         </div>
     )
-}
 
-function postVideo(component){
-    console.log(component);
+    function postVideo(){
+        const movie = {
+            name: titleRef.current.value,
+            category: categoryRef.current.value,
+            ageRating: ageRef.current.value,
+            archived: archivedRef.current.checked,
+            durationMinutes: durationRef.current.value,
+            stockCount: stockRef.current.value,
+            thumbnailUrl: thumbRef.current.value
+        }
+
+        if (Object.values(movie).every(element => element !== 'undefined' && element !== '')){
+            console.log('safe to submit to the API');
+        }else{
+            console.warn('null object contained within! reject');
+        }
+
+        console.log(movie);
+    }
 }
 
 export default NewMovie;
