@@ -1,7 +1,12 @@
+import { useState } from 'react';
+
+import NewMovie from '../components/NewMovie'
+
 import '../styles/StaffArea.css'
 
 export default function StaffArea({movies}){
-    console.log('movies', movies);
+    const [newMovieState, setNewMovieState] = useState(false);
+    
     return (
         <div className ='grid-container'>
             <div className='staff-nav'>
@@ -9,7 +14,8 @@ export default function StaffArea({movies}){
             </div>
             <div className='body-container'>
                 <p>You are in a restricted area. There should have been some form of authentication to prevent this!</p>
-                <button>Add</button>
+                <button onClick={() => setNewMovieState(true)}>New</button>
+                {newMovieState && <NewMovie displayForm={setNewMovieState}/>}
                 <button>Delete Selected</button>
                 <label>Edit Mode</label>
                 <input type='checkbox'></input>

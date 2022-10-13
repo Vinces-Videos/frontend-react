@@ -28,3 +28,25 @@ th {
 td {
     padding: 3px 10px;
 }
+
+.movie-form {
+    background-color: rgba(0,0,0,0.1);
+    margin: 20px 0;
+    padding: 20px;
+}
+
+.movie-form label {
+    display: block;
+}
+
+.movie-form input, select {
+    margin-left: 15px;
+}
+
+.long-input {
+    width: 40rem;
+}
+
+.medium-input {
+    width: 20rem;
+}
