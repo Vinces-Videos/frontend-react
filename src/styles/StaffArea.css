@@ -1,0 +1,30 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 7fr;
+    grid-gap: 20px;
+}
+
+.staff-nav {
+    background-color: rgb(150,150,150);
+    box-shadow: inset -5px 0 10px black;
+    height: 100vh;
+    padding: 10px;
+}
+
+table {
+    border: 2px solid;
+    border-radius: 2px;
+    border-color: black;
+    border-collapse: collapse;
+}
+
+th {
+    background-color: rgb(64, 64, 97);
+    color: white;
+    text-align: center;
+    padding: 5px;
+}
+
+td {
+    padding: 3px 10px;
+}

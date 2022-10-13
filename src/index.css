@@ -7,6 +7,10 @@ h4 {
     color: white;
 }
 
+.body-container {
+    margin: 2rem;
+}
+
 body {
     font-family:  'Poppins', sans-serif;
     color: black;
@@ -17,9 +21,25 @@ h3 {
     text-transform: uppercase;
 }
 
+button {
+    all: unset;
+    background-color: rgba(150, 150, 150);
+    margin: 4px;
+    padding: 5px 15px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: rgba(0,0,0,0.5);
+}
+
+button:active {
+    background-color: rgba(0,0,0,0.75);
+}
+
 .categories-outer-container {
     max-width: 90%;
-    margin: 15px auto;
+    margin: auto;
     overflow: auto;
     border-radius: 5px;
 }

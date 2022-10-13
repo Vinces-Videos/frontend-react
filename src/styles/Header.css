@@ -6,6 +6,7 @@
     align-items: center;
     gap: 2rem;
     padding: 0 1rem;
+    height: 4rem;
 }
 
 .nav ul {
@@ -21,8 +22,9 @@
     text-decoration: none;
 }
 
-.nav li:hover button:hover {
+.nav li:hover {
     background-color: rgba(200, 200, 200, 50);
+    cursor: pointer;
 }
 
 .logo {

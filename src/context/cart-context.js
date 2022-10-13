@@ -42,7 +42,6 @@ function reducer(cart, action){
 export default function CartProvider({children}){
     //reducerCart is a new empty array, this will become an array of movies
     const [cart, dispatch] = useReducer(reducer, []);
-    console.log(cart);
 
     function handleCartUpdate(item){
         dispatch({type: ACTIONS.ADD, payload: item});

@@ -1,4 +1,5 @@
 import { React } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types'
 import { useCart } from '../context/cart-context'
 import '../styles/Header.css'
@@ -13,7 +14,7 @@ const Header = ({modal}) => {
         </a>
           <ul>
             <li>
-              <a href='/staff'>Staff Area</a>
+              <Link to='/staff'>Staff Area</Link>
             </li>
             <li onClick={() => {modal(true)}}>
               <a>Cart ({cart.length})</a>
