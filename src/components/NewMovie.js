@@ -1,4 +1,6 @@
 import { useRef } from "react";
+//Import the API functions to make the put call
+const Api = require('../Api');
 
 const NewMovie = ({displayForm}) => {
     const titleRef = useRef(null);
@@ -58,7 +60,7 @@ const NewMovie = ({displayForm}) => {
         }
 
         if (Object.values(movie).every(element => element !== 'undefined' && element !== '')){
-            console.log('safe to submit to the API');
+            Api.Post('foo', movie);
         }else{
             console.warn('null object contained within! reject');
         }

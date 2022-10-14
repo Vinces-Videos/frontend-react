@@ -12,6 +12,9 @@ import CartProvider from './context/cart-context'
 import Home from './pages/Home';
 import StaffArea from './pages/StaffArea';
 
+//Requires, not using React. Just brings in additional .JS needed
+const Api = require('./Api');
+
 function App() {
   const baseApiURL = "https://localhost:5001";
 
@@ -23,8 +26,8 @@ function App() {
   //Load the data whenever the application is refreshed
   useEffect(() => {
       //Call the async function defined above
-      (async () => await FetchItems(`${baseApiURL}/FilmCategory`, setCategories))(); //Get film categories
-      (async () => await FetchItems(`${baseApiURL}/Videos`, setMovies))(); //Get movie list
+      (async () => await Api.FetchItems(`${baseApiURL}/FilmCategory`, setCategories))(); //Get film categories
+      (async () => await Api.FetchItems(`${baseApiURL}/Videos`, setMovies))(); //Get movie list
   }, []);
 
   return (
@@ -42,17 +45,6 @@ function App() {
       </CartProvider>
     </>
   )
-}
-
-//Should be in its own class
-async function FetchItems(url, func){
-  try {
-    const response = await fetch(url);
-    const listItems = await response.json();
-    func(listItems)
-  }catch(err){
-    console.log(err);
-  }
 }
 
 export default App;
