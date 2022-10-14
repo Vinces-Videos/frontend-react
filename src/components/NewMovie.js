@@ -59,8 +59,13 @@ const NewMovie = ({displayForm}) => {
             thumbnailUrl: thumbRef.current.value
         }
 
+        //If all of the required parameters have been fulfilled, submit to the API and await a response.
         if (Object.values(movie).every(element => element !== 'undefined' && element !== '')){
-            Api.Post('foo', movie);
+            const videosEndpoint = process.env.REACT_APP_videosEndpoint;
+            Api.Put(videosEndpoint, movie, (res) => {
+                console.log(res);
+                //Add to the movies collection
+            });
         }else{
             console.warn('null object contained within! reject');
         }

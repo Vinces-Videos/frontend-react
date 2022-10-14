@@ -14,10 +14,11 @@ import StaffArea from './pages/StaffArea';
 
 //Requires, not using React. Just brings in additional .JS needed
 const Api = require('./Api');
+console.log('Environment Variables', process.env);
+const videosEndpoint = process.env.REACT_APP_videosEndpoint;
+const categoriesEndpoint = process.env.REACT_APP_categoriesEndpoint;
 
 function App() {
-  const baseApiURL = "https://localhost:5001";
-
   //Initialise our states
   const [categories, setCategories] = useState([])
   const [movies, setMovies] = useState([])
@@ -26,8 +27,8 @@ function App() {
   //Load the data whenever the application is refreshed
   useEffect(() => {
       //Call the async function defined above
-      (async () => await Api.FetchItems(`${baseApiURL}/FilmCategory`, setCategories))(); //Get film categories
-      (async () => await Api.FetchItems(`${baseApiURL}/Videos`, setMovies))(); //Get movie list
+      (async () => await Api.FetchItems(categoriesEndpoint, setCategories))(); //Get film categories
+      (async () => await Api.FetchItems(videosEndpoint, setMovies))(); //Get movie list
   }, []);
 
   return (
