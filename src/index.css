@@ -14,27 +14,11 @@ h4 {
 body {
     font-family:  'Poppins', sans-serif;
     color: black;
-    background-color: rgb(200, 200, 200); 
+    background-color: #002e3d; 
 }
 
 h3 {
     text-transform: uppercase;
-}
-
-button {
-    all: unset;
-    background-color: rgba(150, 150, 150);
-    margin: 4px;
-    padding: 5px 15px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: rgba(0,0,0,0.5);
-}
-
-button:active {
-    background-color: rgba(0,0,0,0.75);
 }
 
 label {
