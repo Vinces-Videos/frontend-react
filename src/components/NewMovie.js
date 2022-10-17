@@ -19,7 +19,9 @@ const NewMovie = ({displayForm}) => {
             </label>
             <label>Category:
                 <select ref={categoryRef}>
-                    <option>A</option>
+                    <option>New Releases</option>
+                    <option>Regular</option>
+                    <option>Childrens</option>
                 </select>
             </label>
             <label>Age Rating:
@@ -64,14 +66,15 @@ const NewMovie = ({displayForm}) => {
             const videosEndpoint = process.env.REACT_APP_videosEndpoint;
             Api.Put(videosEndpoint, movie, (res) => {
                 console.log(res);
-                //Add to the movies collection
+                //This is messy, shouldn't require a whole page refresh
+                window.location.reload();
             });
         }else{
             console.warn('null object contained within! reject');
         }
 
         console.log(movie);
-    }
+    }   
 }
 
 export default NewMovie;

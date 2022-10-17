@@ -18,6 +18,20 @@ export async function Put(url, payload, func){
     console.log(request);
 }
 
+export async function Delete(url, id, func){
+    url = `${url}/${id}`
+    const request = {
+        method: 'DELETE',
+        headers: { 'Content-Type' : 'application/json' }
+    }
+    try {
+        await fetch(url, request).then(result => func(result));
+    }catch(err){
+        console.log(err);
+    }
+    console.log(request);
+}
+
 export async function FetchItems(url, func){
     try {
       const response = await fetch(url);

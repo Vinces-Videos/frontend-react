@@ -1,8 +1,14 @@
+//Imports
 import { useState } from 'react';
 
+//Components=
 import NewMovie from '../components/NewMovie'
 
+//CSS
 import '../styles/StaffArea.css'
+
+//Requires
+const Api = require ('../Api');
 
 export default function StaffArea({movies}){
     const [newMovieState, setNewMovieState] = useState(false);
@@ -16,7 +22,7 @@ export default function StaffArea({movies}){
                 <p>You are in a restricted area. There should have been some form of authentication to prevent this!</p>
                 <button onClick={() => setNewMovieState(true)}>New</button>
                 {newMovieState && <NewMovie displayForm={setNewMovieState}/>}
-                <button>Delete Selected</button>
+                <button onClick={() => deleteSelected()}>Delete Selected</button>
                 <label>Edit Mode</label>
                 <input type='checkbox'></input>
                 <table>
@@ -34,10 +40,11 @@ export default function StaffArea({movies}){
                     </thead>
                     <tbody>
                         {movies.map(element => {
+                            //The key property is just for React, we need to assign our own accessible key to be able to identify the record.
                             return (
                                 <tr key={element.id}>
                                     <td>
-                                        <input type='checkbox'></input>
+                                        <input data-key={element.id} className='toDelete' type='checkbox'></input>
                                     </td>
                                     <td>{element.name}</td>
                                     <td>{element.category}</td>
@@ -56,4 +63,27 @@ export default function StaffArea({movies}){
             </div>
         </div>
     )
+
+
+    //Use query selector to get the attribute from ticked to delete rows
+    function deleteSelected(){
+        const deleteElements = document.querySelectorAll('input[type=checkbox]:checked.toDelete');
+        //Convert to an array and drop all unnecessary additional properties
+        const deleteKeys = [...deleteElements].map(htmlElement => htmlElement.getAttribute('data-key'));
+        console.log('Keys to delete are', deleteKeys);
+        //Ensure the user that they want to do this, multiple rows will be deleted!
+        if (deleteKeys.length > 0)
+            if (window.confirm(`Are you sure you want to delete ${deleteKeys.length} records`))
+            {
+                //API only currently supports deleting one key at a time
+                deleteKeys.forEach(key => Api.Delete(process.env.REACT_APP_productsEndpoint, key, (result) => {
+                    console.log(result);
+                    //This is messy, shouldn't require a whole page refresh
+                    window.location.reload();
+                }));
+
+                //proceed with delete
+                console.log('deleting');
+            }
+    }
 }
