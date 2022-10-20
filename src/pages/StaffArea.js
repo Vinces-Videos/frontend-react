@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { Table, TableHead, TableBody, TableRow, TableCell, TableContainer, Button } from '@mui/material';
 import Paper from '@mui/material/Paper';
+import Checkbox from '@mui/material/Checkbox';
 
 //Components=
 import NewMovie from '../components/NewMovie'
@@ -26,7 +27,7 @@ export default function StaffArea({movies}){
                 {newMovieState && <NewMovie displayForm={setNewMovieState}/>}
                 <Button onClick={() => deleteSelected()}>Delete Selected</Button>
                 <label>Edit Mode</label>
-                <input type='checkbox'></input>
+                <Checkbox type='checkbox'></Checkbox>
                 <TableContainer component={Paper}>
                     <Table>
                         <TableHead>
@@ -47,13 +48,13 @@ export default function StaffArea({movies}){
                                 return (
                                     <TableRow key={element.id}>
                                         <TableCell>
-                                            <input data-key={element.id} className='toDelete' type='checkbox'></input>
+                                            <Checkbox data-key={element.id} className='toDelete' type='checkbox'></Checkbox>
                                         </TableCell>
                                         <TableCell>{element.name}</TableCell>
                                         <TableCell>{element.category}</TableCell>
                                         <TableCell>{element.ageRating}</TableCell>
                                         <TableCell>
-                                            <input type='checkbox' disabled={true} defaultChecked={element.archived} ></input>
+                                            <Checkbox type='checkbox' disabled defaultChecked={element.archived} ></Checkbox>
                                         </TableCell>
                                         <TableCell>{element.durationMinutes}</TableCell>
                                         <TableCell>{element.stockCount}</TableCell>
@@ -73,11 +74,11 @@ export default function StaffArea({movies}){
     function deleteSelected(){
         const deleteElements = document.querySelectorAll('input[type=checkbox]:checked.toDelete');
         //Convert to an array and drop all unnecessary additional properties
-        const deleteKeys = [...deleteElements].map(htmlElement => htmlElement.getAtTableRowibute('data-key'));
+        const deleteKeys = [...deleteElements].map(htmlElement => htmlElement.getAttribute('data-key'));
         console.log('Keys to delete are', deleteKeys);
         //Ensure TableCelle user TableCellat TableCelley want to do TableCellis, multiple rows will be deleted!
-        if (deleteKeys.lengTableCell > 0)
-            if (window.confirm(`Are you sure you want to delete ${deleteKeys.lengTableCell} records`))
+        if (deleteKeys.length > 0)
+            if (window.confirm(`Are you sure you want to delete ${deleteKeys.length} records`))
             {
                 //API only currently supports deleting one key at a time
                 deleteKeys.forEach(key => Api.Delete(process.env.REACT_APP_productsEndpoint, key, (result) => {

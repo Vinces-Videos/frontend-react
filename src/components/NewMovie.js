@@ -1,4 +1,12 @@
 import { useRef } from "react";
+import Select from '@mui/material/Select';
+import { MenuItem } from "@mui/material";
+import Button from '@mui/material/Button';
+import Switch from '@mui/material/Switch';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 //Import the API functions to make the put call
 const Api = require('../Api');
 
@@ -12,30 +20,25 @@ const NewMovie = ({displayForm}) => {
     const thumbRef = useRef(null);
 
     return (
-        <div className='movie-form'>
-            <h5>New Movie Form</h5>
-            <label>Title:
+        <Box component='form' noValidate autoComplete='off'>
+            <TextField ref={titleRef} required id='outlined-required' label="Title">
                 <input ref={titleRef} className='medium-input' type='textbox'/>
-            </label>
-            <label>Category:
-                <select ref={categoryRef}>
-                    <option>New Releases</option>
-                    <option>Regular</option>
-                    <option>Childrens</option>
-                </select>
-            </label>
-            <label>Age Rating:
-                <select ref={ageRef}>
-                    <option value='all'>U - Suitable for all</option>
-                    <option value='pg'>PG - Parental guidance</option>
-                    <option value='12'>12 - Age 12 and above</option>
-                    <option value='15'>15 - Age 15 and above</option>
-                    <option value='18'>18 - Age 18 and above</option>
-                </select>
-            </label>
-            <label>Archived:
-                <input ref={archivedRef} type='checkbox'/>
-            </label>
+            </TextField>
+            <Select ref={categoryRef} label='Category'>
+                <MenuItem>New Releases</MenuItem>
+                <MenuItem>Regular</MenuItem>
+                <MenuItem>Childrens</MenuItem>
+            </Select>
+            <Select ref={ageRef} label='Age Rating'>
+                <MenuItem value='all'>U - Suitable for all</MenuItem>
+                <MenuItem value='pg'>PG - Parental guidance</MenuItem>
+                <MenuItem value='12'>12 - Age 12 and above</MenuItem>
+                <MenuItem value='15'>15 - Age 15 and above</MenuItem>
+                <MenuItem value='18'>18 - Age 18 and above</MenuItem>
+            </Select>
+            <FormGroup>
+                <FormControlLabel ref={archivedRef} control={<Switch/>} label="Archived" />
+            </FormGroup>
             <label>Duration (minutes):
                 <input ref={durationRef} type='number' min='1' max='900'/>
             </label>
@@ -45,9 +48,9 @@ const NewMovie = ({displayForm}) => {
             <label>Thumbnail URL:
                 <input ref={thumbRef} className='long-input' type='textbox'/>
             </label>
-            <button onClick={() => postVideo()}>Submit</button>
-            <button onClick={() => displayForm(false)}>Cancel</button>
-        </div>
+            <Button onClick={() => postVideo()}>Submit</Button>
+            <Button onClick={() => displayForm(false)}>Cancel</Button>
+        </Box>
     )
 
     function postVideo(){

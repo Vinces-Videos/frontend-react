@@ -14,7 +14,7 @@ h4 {
 body {
     font-family:  'Poppins', sans-serif;
     color: black;
-    background-color: #002e3d; 
+    background-color: #002e3d45; 
 }
 
 h3 {
@@ -34,7 +34,7 @@ label {
 }
 
 .categories-inner-container {
-    background-color: rgb(100, 100, 100); 
+    background-color: rgba(0, 0, 0, 0.3); 
     border: 1px solid steelblue;
     padding: 10px;
     margin: 5px;
